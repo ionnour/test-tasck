@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import Input from './Input';
@@ -39,21 +38,6 @@ const Auth = () => {
     }
   };
 
-  const googleSuccess = async (res) => {
-    console.log(res);
-    const result = res?.profileObj;
-    const token = res?.tokenId;
-
-    try {
-      dispatch({ type: AUTH, data: { result, token } });
-
-      history.push('/');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const googleError = () => alert('Google Sign In was unsuccessful. Try again');
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -84,17 +68,6 @@ const Auth = () => {
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
 
-          <GoogleLogin
-            clientId="472689271468-vfob0v465d0m6pnnb8spckn7nsp4j9ko.apps.googleusercontent.com"
-            render={(renderProps) => (
-              <Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
-                Google Sign In
-              </Button>
-            )}
-            onSuccess={googleSuccess}
-            onFailure={googleError}
-            cookiePolicy="single_host_origin"
-          />
 
           <Grid container justifyContent="flex-end">
             <Grid item>
