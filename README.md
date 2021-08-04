@@ -1,9 +1,9 @@
 # Test-tasck
 Auhtentication
 
-for testing: 
-email: admin@mail.com
-password: admin
+-for testing
+-email: admin@mail.com
+-password: admin
 
 ## Core Packages
 
